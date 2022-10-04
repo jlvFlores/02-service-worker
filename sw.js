@@ -2,10 +2,10 @@
 
 self.addEventListener('fetch', event => {
 
-    if ( event.request.url.includes('style.css') ) {
+    const resp = fetch( event.request )
+        .resp( resp => {
+            return resp.ok ? resp : fetch('img/main.jpg');
+        });
 
-        let resp = fetch('img/main-patas-arriba.jpg');
-
-        event.respondWith( resp );
-    }
+    event.respondWith( resp );
 });
